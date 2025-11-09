@@ -6,6 +6,17 @@
 </head>
 <body>
   <h1>Open Proxy Browser</h1>
-  <button onclick="window.open('https://calebisdumb.drm.hk/', '_blank')">Launch Proxy</button>
+  <button onclick="launchProxy()">Launch Proxy</button>
+
+  <script>
+    function launchProxy() {
+      const win = window.open('about:blank', '_blank');
+      if (win) {
+        win.location.href = 'https://calebisdumb.drm.hk/';
+      } else {
+        alert('Popup blocked. Please allow popups for this site.');
+      }
+    }
+  </script>
 </body>
 </html>
