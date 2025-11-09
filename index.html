@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Launch Proxy</title>
+  <title>Launch Proxy Cloaked</title>
 </head>
 <body>
-  <h1>Open Proxy Browser</h1>
-  <button onclick="launchProxy()">Launch Proxy</button>
+  <h1>Launch Proxy in Cloaked Tab</h1>
+  <button onclick="launchCloaked()">Open Cloaked</button>
 
   <script>
-    function launchProxy() {
+    function launchCloaked() {
       const win = window.open('about:blank', '_blank');
       if (win) {
         win.location.href = 'https://calebisdumb.drm.hk/';
