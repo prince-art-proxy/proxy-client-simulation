@@ -1,0 +1,37 @@
+simulateBtn.addEventListener('click', async () => {
+  const p = proxySelect.value;
+  const host = customHost.value.trim();
+  const tgt = target.value.trim();
+  if (!tgt) {
+    appendLog('[error] Enter a target URL.');
+    return;
+  }
+
+  let proxyUrl = '';
+  if (p === 'none') {
+    proxyUrl = tgt;
+  } else if (p === 'caleb') {
+    proxyUrl = `https://calebisdumb.drm.hk/?url=${encodeURIComponent(tgt)}`;
+  } else {
+    if (!host) {
+      appendLog('[error] Custom proxy host required.');
+      return;
+    }
+    proxyUrl = `${host}?url=${encodeURIComponent(tgt)}`;
+  }
+
+  appendLog(`[info] Sending request to: ${proxyUrl}`);
+
+  try {
+    const res = await fetch(proxyUrl, {
+      method: 'GET',
+      headers: {
+        'Accept': 'text/plain'
+      }
+    });
+    const text = await res.text();
+    appendLog(`[success] Response (${res.status}): ${text.slice(0, 300)}...`);
+  } catch (err) {
+    appendLog(`[error] Request failed: ${err.message}`);
+  }
+});
